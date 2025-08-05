@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { useFonts } from 'expo-font';
+import { Link, useRouter } from 'expo-router';
 
-export default function App() {
+export default function Index() {
 
+  const router = useRouter()
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
   const [loaded, error] = useFonts({
@@ -15,44 +16,43 @@ export default function App() {
   })
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="auto" />
-        <Image
-          style={styles.logo}
-          source={require('../assets/logo-jados.png')}
+    <SafeAreaView style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../assets/logo-jados.png')}
+      />
+      <KeyboardAvoidingView
+        behavior='padding'
+        style={styles.containerInput}
+      >
+
+        <Text style={styles.textInput}>E-Mail</Text>
+        <TextInput
+          placeholder='Enter Email address'
+          onChangeText={setUserEmail}
+          keyboardType='email-address'
+          style={styles.inputStyle}
         />
-        <KeyboardAvoidingView
-          behavior='padding'
-          style={styles.containerInput}
-        >
 
-          <Text style={styles.textInput}>E-Mail</Text>
-          <TextInput
-            placeholder='Enter Email address'
-            onChangeText={setUserEmail}
-            keyboardType='email-address'
-            style={styles.inputStyle}
-          />
+        <Text style={styles.textInput}>Password</Text>
+        <TextInput
+          placeholder='Enter Password'
+          onChangeText={setUserPassword}
+          keyboardType='visible-password'
+          style={styles.inputStyle}
+        />
 
-          <Text style={styles.textInput}>Password</Text>
-          <TextInput
-            placeholder='Enter Password'
-            onChangeText={setUserPassword}
-            keyboardType='visible-password'
-            style={styles.inputStyle}
-          />
+      </KeyboardAvoidingView>
 
-        </KeyboardAvoidingView>
+      <Text style={[styles.textSubtitle, styles.textForgot]} >Forget Password?</Text>
 
-        <Text style={[styles.textSubtitle, styles.textForgot]} >Forget Password?</Text>
+      <TouchableOpacity style={styles.buttonSignIn} activeOpacity={0.7} onPress={() => router.navigate('/dashboardFamily')}>
+        <Text style={styles.textButtonSignIn}>SIGN IN</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonSignIn} activeOpacity={0.7}>
-          <Text style={styles.textButtonSignIn}>SIGN IN</Text>
-        </TouchableOpacity>
+      <Text style={[styles.textSubtitle, styles.textForgot]} >Don't have an account? <Link style={styles.textSignUp} href="/signUp">Sign up</Link></Text>
 
-      </SafeAreaView>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 }
 
@@ -108,11 +108,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
+    marginBottom: 20
   },
   textButtonSignIn: {
     color: '#ffffff',
     fontSize: fontSizeTitle,
     fontFamily: fontFamilyButton
+  },
+  textSignUp: {
+    color: '#2600FF'
   }
 });
