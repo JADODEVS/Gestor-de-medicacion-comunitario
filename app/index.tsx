@@ -1,14 +1,16 @@
-import { StyleSheet, Text, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Link, useRouter } from 'expo-router';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Index() {
 
   const router = useRouter()
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loaded, error] = useFonts({
     'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
     'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
@@ -31,16 +33,22 @@ export default function Index() {
           placeholder='Enter Email address'
           onChangeText={setUserEmail}
           keyboardType='email-address'
-          style={styles.inputStyle}
+          style={styles.inputStyleMail}
         />
 
         <Text style={styles.textInput}>Password</Text>
-        <TextInput
-          placeholder='Enter Password'
-          onChangeText={setUserPassword}
-          keyboardType='visible-password'
-          style={styles.inputStyle}
-        />
+        <View style={styles.inputWrapper}>
+          <TextInput
+            placeholder='Enter Password'
+            onChangeText={setUserPassword}
+            keyboardType='visible-password'
+            style={styles.inputStylePassword}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <MaterialIcons name={showPassword ? "visibility" : "visibility-off"} size={20} color="#000" />
+          </TouchableOpacity>
+        </View>
+        
 
       </KeyboardAvoidingView>
 
@@ -49,6 +57,17 @@ export default function Index() {
       <TouchableOpacity style={styles.buttonSignIn} activeOpacity={0.7} onPress={() => router.navigate('/dashboardFamily')}>
         <Text style={styles.textButtonSignIn}>SIGN IN</Text>
       </TouchableOpacity>
+
+      <View style={styles.containerView}>
+        <View style={styles.childView}></View>
+        <Text>SIGN IN WITH</Text>
+        <View style={styles.childView}></View>
+      </View>
+
+      <Image
+        style={styles.googleIcon}
+        source={require('../assets/icon-google-48.png')}
+      />
 
       <Text style={[styles.textSubtitle, styles.textForgot]} >Don't have an account? <Link style={styles.textSignUp} href="/signUp">Sign up</Link></Text>
 
@@ -74,21 +93,21 @@ const styles = StyleSheet.create({
   logo: {
     height: 50,
     objectFit: 'contain',
-    marginBottom: screenHeigth * 0.1
+    marginBottom: screenHeigth * 0.05
   },
   containerInput: {
     width: screenWidth * 0.8
   },
   textInput: {
+    marginTop: 30,
     fontSize: fontSizeTitle,
     fontFamily: fontFamilyText
   },
-  inputStyle: {
+  inputStyleMail: {
     paddingBottom: 0,
     paddingLeft: 0,
     paddingTop: 5,
     borderBottomWidth: 1,
-    marginBottom: 30,
     fontSize: fontSizePlaceholder,
     fontFamily: fontFamilyText
   },
@@ -118,5 +137,43 @@ const styles = StyleSheet.create({
   },
   textSignUp: {
     color: '#2600FF'
-  }
+  },
+  googleIcon: {
+    height: 35,
+    objectFit: 'contain',
+    marginBottom: 20
+  },
+  childView: {
+    height: 2,
+    width: screenWidth * 0.15,
+    backgroundColor: '#000000',
+    marginHorizontal: 10
+  },
+  containerView: {
+    width: screenWidth,
+    flexDirection: 'row',
+    alignItems: 'center',    
+    justifyContent: 'center',
+    marginBottom: 10
+  },
+  iconVisibility: {
+    height: 35,
+    objectFit: 'contain',
+    marginBottom: 20,
+    color: '#000000' 
+  },
+  inputWrapper:{
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    borderBottomWidth: 1,
+    marginBottom: 30
+  },
+  inputStylePassword: {
+    flex: 1,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingTop: 5,
+    fontSize: fontSizePlaceholder,
+    fontFamily: fontFamilyText
+  },
 });
