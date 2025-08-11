@@ -47,15 +47,18 @@ export default function Index() {
           />
 
           <Text style={styles.textInput}>Rol</Text>
-          <Picker
-            selectedValue={rol}
-            style={styles.inputStyleMail}
-            onValueChange={(itemValue) => setRol(itemValue)}
-          >
-            <Picker.Item label="select" value="select" />
-            <Picker.Item label="cuidador" value="cuidador" />
-            <Picker.Item label="familiar" value="familiar" />
-          </Picker>
+<View style={styles.pickerContainer}>
+  <Picker
+    selectedValue={rol}
+    style={styles.picker}
+    onValueChange={(itemValue) => setRol(itemValue)}
+  >
+    <Picker.Item label="Select" value="select" />
+    <Picker.Item label="Cuidador" value="cuidador" />
+    <Picker.Item label="Familiar" value="familiar" />
+  </Picker>
+</View>
+
 
           <Text style={styles.textInput}>Phone</Text>
           <TextInput
@@ -224,4 +227,17 @@ const styles = StyleSheet.create({
     fontSize: fontSizePlaceholder,
     fontFamily: fontFamilyText
   },
+  pickerContainer: {
+  borderWidth: 1,
+  borderColor: '#000000ff',
+  borderRadius: 10,
+  overflow: 'hidden',
+  backgroundColor: '#A5D8FF',
+  marginTop: 5
+},
+picker: {
+  height: 50,
+  color: '#333'
+}
+
 });

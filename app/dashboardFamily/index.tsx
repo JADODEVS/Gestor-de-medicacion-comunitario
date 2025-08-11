@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Link } from 'expo-router';
+import Menu from "../../components/Menu";
+
 
 export default function Index() {
 
@@ -18,7 +20,7 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <Text >Volver, esto es DashboardFamily<Link style={styles.textSignUp} href="/">Sign In</Link></Text>
-
+    <Menu />
     </SafeAreaView>
   );
 }
