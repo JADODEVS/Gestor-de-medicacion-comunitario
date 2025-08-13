@@ -3,7 +3,7 @@ import { StyleSheet,View, Text, TextInput, Image, KeyboardAvoidingView, Dimensio
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { useFonts } from 'expo-font';
-import { Link } from 'expo-router';
+import { router } from 'expo-router';
 import Menu from "../../components/Menu";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
@@ -20,7 +20,7 @@ export default function Index() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text >Volver, esto es DashboardFamily<Link style={styles.textSignUp} href="/">Sign In</Link></Text> */}
+      
       <View style={styles.header}>
       <Text style={styles.title}>Dashboard</Text>
 
@@ -29,6 +29,7 @@ export default function Index() {
         <Ionicons name="mail-unread-outline" size={24} color="#333" />
       </View>
     </View>
+    <Text onPress={() => router.navigate('/')} style={styles.atras}>Pa atras</Text>
     <Menu />
     </SafeAreaView>
   );
@@ -39,7 +40,7 @@ const screenHeigth = Dimensions.get('window').height
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: screenHeigth * 0.05,
+    paddingTop: screenHeigth * 0.02,
     backgroundColor: '#A5D8FF',
     alignItems: "center",
   },
@@ -63,5 +64,15 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 15,
+  },
+  text: {
+    fontSize: 16,
+    color: "#333",
+  },
+  atras: {
+    marginTop: 20,
+    fontSize: 50,
+    color: "#4e32ffff",
+    textDecorationLine: 'underline',
   },
 });

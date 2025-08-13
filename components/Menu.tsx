@@ -1,6 +1,6 @@
 // components/Menu.tsx
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 
@@ -10,27 +10,26 @@ export default function Menu() {
   return (
     <View style={styles.container}>
       
-      <TouchableOpacity onPress={() => router.push("/dashboardFamily/ViewPatientsFamily")}>
+      <TouchableOpacity onPress={() => router.navigate("/dashboardFamily")}>
         <MaterialIcons name="diversity-2" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push("/dashboardFamily/Search")}>
+      <TouchableOpacity onPress={() => router.navigate("/viewPatientsFamily")}>
         <MaterialIcons name="person-search" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
-      {/* Botón central */}
       <TouchableOpacity 
         style={styles.centerButton}
-        onPress={() => router.push("/dashboardFamily")}
+        onPress={() => router.navigate("/dashboardFamily")}
       >
         <MaterialIcons name="home" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push("/dashboardFamily/CreatePatientFamily")}>
+      <TouchableOpacity onPress={() => router.navigate("/CreatePatientFamily")}>
         <MaterialIcons name="person-add" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push("/dashboardFamily/Profile")}>
+      <TouchableOpacity onPress={() => router.navigate("/profile")}>
         <MaterialIcons name="person" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 

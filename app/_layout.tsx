@@ -36,6 +36,30 @@ export default function Layout(){
                 }}
                 />
 
+                <Stack.Screen
+                name="viewPatientsFamily/index"
+                options={{
+                    animation: "slide_from_bottom",
+                    animationDuration: 300
+                }}
+                />
+
+                <Stack.Screen
+                name="CreatePatientFamily/index"
+                options={{
+                    animation: "slide_from_bottom",
+                    animationDuration: 300
+                }}
+                />
+
+                <Stack.Screen
+                name="profile/index"
+                options={{
+                    animation: "slide_from_bottom",
+                    animationDuration: 300
+                }}
+                />
+
             </Stack>
         </SafeAreaProvider>
     )
