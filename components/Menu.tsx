@@ -1,7 +1,8 @@
 // components/Menu.tsx
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+
 
 export default function Menu() {
   const router = useRouter();
@@ -10,11 +11,11 @@ export default function Menu() {
     <View style={styles.container}>
       
       <TouchableOpacity onPress={() => router.push("/dashboardFamily/ViewPatientsFamily")}>
-        <MaterialCommunityIcons name="account-group" size={30} color="#333" />
+        <MaterialIcons name="diversity-2" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push("/dashboardFamily/Search")}>
-        <MaterialIcons name="search" size={30} color="#333" />
+        <MaterialIcons name="person-search" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
       {/* Botón central */}
@@ -22,15 +23,15 @@ export default function Menu() {
         style={styles.centerButton}
         onPress={() => router.push("/dashboardFamily")}
       >
-        <MaterialIcons name="home" size={30} color="#333" />
+        <MaterialIcons name="home" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push("/dashboardFamily/CreatePatientFamily")}>
-        <FontAwesome5 name="user-plus" size={20} color="#333" />
+        <MaterialIcons name="person-add" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push("/dashboardFamily/Profile")}>
-        <MaterialIcons name="person" size={30} color="#333" />
+        <MaterialIcons name="person" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
     </View>
@@ -43,11 +44,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#5C6B73",
-    padding: 20,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    borderBottomRightRadius: 90,
-    borderBottomLeftRadius: 90,
+    padding: 15,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 40,
     position: "absolute",
     bottom: 0,
     width: "95%",
