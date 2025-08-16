@@ -2,31 +2,24 @@ import { StyleSheet,View, Text, TextInput, Image, KeyboardAvoidingView, Dimensio
 import Menu from "../../components/Menu";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Patient from '../../components/patient';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
 
 export default function Index() {
     return (
         <SafeAreaView style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.title}>View Patients</Text>
-            
-              <View style={styles.icons}>
-                <MaterialIcons name="calendar-today" size={24} color="#333" style={styles.icon} />
-                <Ionicons name="mail-unread-outline" size={24} color="#333" />
-              </View>
-          </View>
-          <GestureHandlerRootView>
-            <Patient screenWidth={screenWidth}/>
-          </GestureHandlerRootView>
-          <Menu />
+            <View style={styles.header}>
+                <Text style={styles.title}>Link Caregiver</Text>
+
+                <View style={styles.icons}>
+                    <MaterialIcons name="calendar-today" size={24} color="#333" style={styles.icon} />
+                    <Ionicons name="mail-unread-outline" size={24} color="#333" />
+                </View>
+            </View>
+            <Menu />
         </SafeAreaView>
     );
 }
 
 const screenHeigth = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   container: {
@@ -38,11 +31,11 @@ const styles = StyleSheet.create({
   header: {
     width: "90%",
     flexDirection: "row",
-    justifyContent: "space-between", 
+    justifyContent: "space-between", // separa título e iconos
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderColor: "#000000ff",
-    borderBottomWidth: 1, 
+    borderBottomWidth: 1, // línea inferior
     borderBottomColor: "#000000ff",
   },
   title: {

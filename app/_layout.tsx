@@ -39,15 +39,15 @@ export default function Layout(){
                 <Stack.Screen
                 name="viewPatientsFamily/index"
                 options={{
-                    animation: "slide_from_bottom",
+                    animation: "fade",
                     animationDuration: 300
                 }}
                 />
 
                 <Stack.Screen
-                name="CreatePatientFamily/index"
+                name="createPatientFamily/index"
                 options={{
-                    animation: "slide_from_bottom",
+                    animation: "fade",
                     animationDuration: 300
                 }}
                 />
@@ -55,7 +55,15 @@ export default function Layout(){
                 <Stack.Screen
                 name="profile/index"
                 options={{
-                    animation: "slide_from_bottom",
+                    animation: "fade",
+                    animationDuration: 300
+                }}
+                />
+
+                <Stack.Screen
+                name="linkCaregiver/index"
+                options={{
+                    animation: "fade",
                     animationDuration: 300
                 }}
                 />

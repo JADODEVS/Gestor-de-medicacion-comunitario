@@ -10,7 +10,7 @@ export default function Menu() {
   return (
     <View style={styles.container}>
       
-      <TouchableOpacity onPress={() => router.navigate("/dashboardFamily")}>
+      <TouchableOpacity onPress={() => router.navigate("/linkCaregiver")}>
         <MaterialIcons name="diversity-2" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
@@ -25,7 +25,7 @@ export default function Menu() {
         <MaterialIcons name="home" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.navigate("/CreatePatientFamily")}>
+      <TouchableOpacity onPress={() => router.navigate("/createPatientFamily")}>
         <MaterialIcons name="person-add" size={25} color="#1d1d1dff" />
       </TouchableOpacity>
 
