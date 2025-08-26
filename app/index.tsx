@@ -4,10 +4,12 @@ import { use, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Link, useRouter } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useAuth } from '../context/AuthContext';
 
 export default function Index() {
 
   const router = useRouter()
+  const { login } = useAuth()
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -54,7 +56,7 @@ export default function Index() {
 
       <Text style={[styles.textSubtitle, styles.textForgot]} >Forget Password?</Text>
 
-      <TouchableOpacity style={styles.buttonSignIn} activeOpacity={0.7} onPress={() => router.navigate('/dashboardFamily')}>
+      <TouchableOpacity style={styles.buttonSignIn} activeOpacity={0.7} onPress={() => {login(), router.navigate('/dashboardFamily')}}>
         <Text style={styles.textButtonSignIn}>SIGN IN</Text>
       </TouchableOpacity>
 

@@ -6,10 +6,12 @@ import { useFonts } from 'expo-font';
 import { router } from 'expo-router';
 import Menu from "../../components/Menu";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { useAuth } from '../../context/AuthContext';
 
 
 export default function Index() {
 
+  const { logout } = useAuth()
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
   const [loaded, error] = useFonts({
@@ -29,8 +31,7 @@ export default function Index() {
         <Ionicons name="mail-unread-outline" size={24} color="#333" />
       </View>
     </View>
-    <Text onPress={() => router.navigate('/')} style={styles.atras}>Pa atras</Text>
-    <Menu />
+    <Text onPress={() => {logout(), router.navigate('/')}} style={styles.atras}>Pa atras</Text>
     </SafeAreaView>
   );
 }

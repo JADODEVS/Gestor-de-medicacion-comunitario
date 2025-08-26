@@ -1,4 +1,4 @@
-import { StyleSheet,View, Text, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet,View, Text, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import Menu from "../../components/Menu";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,10 +17,9 @@ export default function Index() {
                 <Ionicons name="mail-unread-outline" size={24} color="#333" />
               </View>
           </View>
-          <GestureHandlerRootView>
-            <Patient screenWidth={screenWidth}/>
+          <GestureHandlerRootView style={styles.containerPatient}>
+            <Patient/>
           </GestureHandlerRootView>
-          <Menu />
         </SafeAreaView>
     );
 }
@@ -56,4 +55,11 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 15,
   },
+  containerPatient: {
+    flex: 1,
+    paddingTop: screenHeigth * 0.02,
+    alignItems: "center",
+    width: screenWidth * 0.9,
+    overflow: 'hidden'
+  }
 });

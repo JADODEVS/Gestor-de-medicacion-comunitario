@@ -97,7 +97,7 @@ export default function Index() {
 
         </KeyboardAvoidingView>
 
-        <TouchableOpacity style={styles.buttonSignUp} activeOpacity={0.7} onPress={() => router.navigate('/dashboardFamily')}>
+        <TouchableOpacity style={styles.buttonSignUp} activeOpacity={0.7} onPress={() => router.navigate('/')}>
           <Text style={styles.textButtonSignIn}>SIGN UP</Text>
         </TouchableOpacity>
 

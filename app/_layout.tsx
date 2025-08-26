@@ -1,74 +1,65 @@
-import { View, Text } from "react-native";
+// app/_layout.tsx
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import Menu from "../components/Menu";
+import { AuthProvider, useAuth } from "../context/AuthContext";
 
-export default function Layout(){
-    return(
-        <SafeAreaProvider>
-            <StatusBar style="auto" />
-            <Stack screenOptions={{ headerShown: false }}>
-        
-                {/* Pantalla principal */}
-                <Stack.Screen
-                name="index" 
-                options={{
-                    animation: "slide_from_left",
-                    animationDuration: 300
-                }}
-                />
+export default function Layout() {
+  return (
+    <AuthProvider>
+      <SafeAreaProvider style={{ flex: 1, backgroundColor: "#A5D8FF"}}>
+        <StatusBar style="auto" />
+        <AppStack />
+      </SafeAreaProvider>
+    </AuthProvider>
+  );
+}
 
-                {/* Pantalla de registro */}
-                <Stack.Screen
-                name="signUp/index" 
-                options={{
-                    animation: "slide_from_right",
-                    animationDuration: 300
-                }}
-                />
+function AppStack() {
+  const { isLoggedIn } = useAuth();
 
-                {/* DashboardFamily */}
-                <Stack.Screen
-                name="dashboardFamily/index" 
-                options={{
-                    animation: "slide_from_bottom",
-                    animationDuration: 300
-                }}
-                />
+  return (
+    <>
+      <Stack screenOptions={{ headerShown: false }}>
+        {/* Pantallas públicas */}
+        <Stack.Screen
+          name="index"
+          options={{ animation: "slide_from_left", animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="signUp/index"
+          options={{ animation: "slide_from_right", animationDuration: 300 }}
+        />
 
-                <Stack.Screen
-                name="viewPatientsFamily/index"
-                options={{
-                    animation: "fade",
-                    animationDuration: 300
-                }}
-                />
+        {/* Pantallas privadas */}
+        <Stack.Screen
+          name="dashboardFamily/index"
+          options={{ animation: "slide_from_bottom", animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="viewPatientsFamily/index"
+          options={{ animation: "fade", animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="createPatientFamily/index"
+          options={{ animation: "fade", animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="profile/index"
+          options={{ animation: "fade", animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="linkCaregiver/index"
+          options={{ animation: "fade", animationDuration: 300 }}
+        />
+      </Stack>
 
-                <Stack.Screen
-                name="createPatientFamily/index"
-                options={{
-                    animation: "fade",
-                    animationDuration: 300
-                }}
-                />
-
-                <Stack.Screen
-                name="profile/index"
-                options={{
-                    animation: "fade",
-                    animationDuration: 300
-                }}
-                />
-
-                <Stack.Screen
-                name="linkCaregiver/index"
-                options={{
-                    animation: "fade",
-                    animationDuration: 300
-                }}
-                />
-
-            </Stack>
-        </SafeAreaProvider>
-    )
+      {isLoggedIn && (
+        <SafeAreaView  style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
+          <Menu />
+        </SafeAreaView>
+      )}
+    </>
+  );
 }

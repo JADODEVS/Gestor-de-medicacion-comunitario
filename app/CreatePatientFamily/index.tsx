@@ -14,7 +14,6 @@ export default function Index() {
                     <Ionicons name="mail-unread-outline" size={24} color="#333" />
                 </View>
             </View>
-            <Menu />
         </SafeAreaView>
     );
 }
