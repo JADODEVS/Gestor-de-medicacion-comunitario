@@ -1,12 +1,11 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native"
+import { View, StyleSheet, Dimensions, TouchableOpacity, Text } from "react-native"
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  withSpring,
 } from 'react-native-reanimated';
-import { Ionicons } from "@expo/vector-icons";
+import {Feather, MaterialCommunityIcons, Entypo} from '@expo/vector-icons';
 
 export default function Patient(){
 
@@ -27,19 +26,18 @@ export default function Patient(){
         ],
     }));
 
-    const maxTranslateX = width / 2 + 30;
+    const maxTranslateX = width / 2 + 15;
     const pan = Gesture.Pan()
         .minDistance(1)
         .onStart(() => {
-        prevTranslationX.value = translationX.value;
+            prevTranslationX.value = translationX.value;
         })
         .onUpdate((event) => {
-
-        translationX.value = clamp(
-            prevTranslationX.value + event.translationX,
-            -maxTranslateX,
-            0
-        );
+            translationX.value = clamp(
+                prevTranslationX.value + event.translationX,
+                -maxTranslateX,
+                0
+            );
         })
         .onEnd((event) => {
             const velocity = event.velocityX;
@@ -55,42 +53,72 @@ export default function Patient(){
         <View style={styles.container}>
             <GestureDetector gesture={pan}>
                 <Animated.View style={[styles.containerPatient, {width: width * 0.9}, animatedStyles]}>
+                    {/* Patient Info Here */}
+                    <Text>Patient Name</Text>
+                    <Text>Patient Age</Text>
                 </Animated.View>
             </GestureDetector>
 
-            <Animated.View style={[styles.deleteButton, {width: 50}]}>
-                <Ionicons name="trash" size={24} color="#ffffff" />
-            </Animated.View>
+            <TouchableOpacity activeOpacity={0.5}>
+                <Animated.View style={[styles.editPatientButton, animatedStyles]}>
+                    <Entypo  name="eye" size={24} color="#000000" />
+                </Animated.View>
+            </TouchableOpacity>
 
-            <Animated.View style={[styles.deleteButton, {width: 50}]}>
-                <Ionicons name="trash" size={24} color="#ffffff" />
-            </Animated.View>
+            <TouchableOpacity activeOpacity={0.5}>
+                <Animated.View style={[styles.addMedicineButton, animatedStyles]}>
+                    <MaterialCommunityIcons name="pill" size={24} color="#000000" />
+                </Animated.View>
+            </TouchableOpacity>
 
-            <Animated.View style={[styles.deleteButton, {width: 50}]}>
-                <Ionicons name="trash" size={24} color="#ffffff" />
-            </Animated.View>
+            <TouchableOpacity activeOpacity={0.5}>
+                <Animated.View style={[styles.deleteButton, animatedStyles]}>
+                    <MaterialCommunityIcons name="trash-can-outline" size={24} color="#ffffff" />
+                </Animated.View>  
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        width: '100%',
+        overflow: 'hidden',
+        borderRadius: 10,
     },
     containerPatient: {
-        backgroundColor: "#000000",
-        height: 50
+        backgroundColor: "#48B0FF",
+        height: 60,
+        borderRadius: 10,
+        padding: 10,
+        flexDirection: 'row',
     },
     deleteButton: {
-        backgroundColor: '#ff0000',
-        height: 50,
+        backgroundColor: '#FF4747',
+        height: 60,
+        width: 60,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: 5,
+        borderRadius: 10
     },
     editPatientButton: {
-
+        backgroundColor: '#48B0FF',
+        height: 60,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 5,
+        borderRadius: 10
     },
     addMedicineButton: {
-
+        backgroundColor: '#48B0FF',
+        height: 60,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 5,
+        borderRadius: 10
     }
 })
